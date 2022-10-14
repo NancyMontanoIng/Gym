@@ -3,11 +3,12 @@ package com.example.reto3mangym.Model;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "machine")
-public class Machine {
+public class Machine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,19 +19,22 @@ public class Machine {
     private Integer year;
     private String description;
 
+   /* @OneToOne
+    @JsonIgnoreProperties({"machine"})
+    public Client client;
+*/
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("machine")
+    @JsonIgnoreProperties("machines")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties({"machine","message"})
-    public List<Reservation> reservations;
-
+    @JsonIgnoreProperties({"machine","client"})
+    public List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties({"client","machine"})
-    public List<Message> messages;
+    @JsonIgnoreProperties("machine")
+    public List<Reservation> reservations;
 
     public Integer getId() {
         return id;
@@ -72,6 +76,14 @@ public class Machine {
         this.description = description;
     }
 
+    /*public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+*/
     public Category getCategory() {
         return category;
     }
@@ -80,19 +92,19 @@ public class Machine {
         this.category = category;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
     public List<Message> getMessages() {
         return messages;
     }
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

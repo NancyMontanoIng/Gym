@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/Category")
 public class CategoryController {
@@ -27,6 +27,7 @@ public class CategoryController {
     public Optional<Category> getCategory(@PathVariable("id") int id){
         return categoryService.getCategory(id);
     }
+
     //ruta de peticion POST    /api/Admin/save
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)

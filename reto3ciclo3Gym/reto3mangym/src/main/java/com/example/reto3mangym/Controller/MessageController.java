@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/Message")
 public class MessageController {
@@ -21,6 +21,7 @@ public class MessageController {
     public List<Message> getAll() {
         return messageService.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Message> getMessage(@PathVariable("id") int id){
         return messageService.getMessage(id);

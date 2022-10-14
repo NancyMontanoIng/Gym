@@ -25,7 +25,7 @@ public class ClientService {
         if(client.getIdClient() == null){
             return clientRepository.save(client);
         } else  {
-            Optional<Client> clientEncontrado = getClient(client.getIdClient());
+            Optional<Client> clientEncontrado = clientRepository.getClient(client.getIdClient());
             if(clientEncontrado.isPresent()){
                 return clientRepository.save(client);
             } else{
@@ -37,7 +37,7 @@ public class ClientService {
 
    public Client update(Client client) {
         if (client.getIdClient() != null) {
-            Optional<Client> clientEncontrado = getClient(client.getIdClient());
+            Optional<Client> clientEncontrado = clientRepository.getClient(client.getIdClient());
             if(!clientEncontrado.isPresent()){
                 if(client.getPassword() != null){
                     clientEncontrado.get().setPassword(client.getPassword());

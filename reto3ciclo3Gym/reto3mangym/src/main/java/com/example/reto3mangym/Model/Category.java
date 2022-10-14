@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
-public class Category implements Serializable {
+public class Category implements Serializable{ //implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,11 +43,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Machine> getGymmachines() {
+    public List<Machine> getMachines() {
         return machines;
     }
 
-    public void setGymmachines(List<Machine> machines) {
+    public void setMachines(List<Machine> machines) {
         this.machines = machines;
     }
 }

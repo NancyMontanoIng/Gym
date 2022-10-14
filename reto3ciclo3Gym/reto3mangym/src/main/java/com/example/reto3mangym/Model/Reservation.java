@@ -3,18 +3,21 @@ package com.example.reto3mangym.Model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
 @Table(name = "reservation")
-public class Reservation {
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
-    private Date starDate;
-    private Date DevolutionDate;
+    private Date startDate;
+    private Date devolutionDate;
     private String status = ("created");
+
 
     @ManyToOne
     @JoinColumn(name = "machineId")
@@ -27,9 +30,10 @@ public class Reservation {
     private Client client;
 
 
-    @OneToOne   //(cascade = {CascadeType.REMOVE}, mappedBy = "reservation")
+    @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
     private Score score;
+
 
     public Integer getIdReservation() {
         return idReservation;
@@ -39,20 +43,20 @@ public class Reservation {
         this.idReservation = idReservation;
     }
 
-    public Date getStarDate() {
-        return starDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStarDate(Date starDate) {
-        this.starDate = starDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getDevolutionDate() {
-        return DevolutionDate;
+        return devolutionDate;
     }
 
     public void setDevolutionDate(Date devolutionDate) {
-        DevolutionDate = devolutionDate;
+        this.devolutionDate = devolutionDate;
     }
 
     public String getStatus() {

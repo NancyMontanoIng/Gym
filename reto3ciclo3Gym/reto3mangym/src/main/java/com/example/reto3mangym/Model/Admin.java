@@ -1,18 +1,18 @@
 package com.example.reto3mangym.Model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "admin")
-public class Admin {
+public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAdmin;
     private String email;
     private String password;
     private String name;
-
 
     public Integer getIdAdmin() {
         return idAdmin;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/api/Client")
 public class ClientController {
@@ -23,6 +23,7 @@ public class ClientController {
     public List<Client> getAll() {
         return clientService.getAll();
     }
+
     @GetMapping("/{id}")  // .../api/Client/10
     public Optional<Client> getClient(@PathVariable("id") int id){
         return clientService.getClient(id);

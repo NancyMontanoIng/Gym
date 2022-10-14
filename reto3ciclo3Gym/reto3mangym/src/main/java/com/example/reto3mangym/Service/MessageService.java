@@ -24,7 +24,7 @@ public class MessageService {
         if(message.getIdMessage() == null){
             return messageRepository.save(message);
         } else  {
-            Optional<Message> messageEncontrado = getMessage(message.getIdMessage());
+            Optional<Message> messageEncontrado = messageRepository.getMessage(message.getIdMessage());
             if(messageEncontrado.isPresent()){
                 return messageRepository.save(message);
             } else{
@@ -35,10 +35,10 @@ public class MessageService {
 
     public Message update(Message message) {
         if (message.getIdMessage() != null) {
-            Optional<Message> messageEncontrado = getMessage(message.getIdMessage());
+            Optional<Message> messageEncontrado = messageRepository.getMessage(message.getIdMessage());
             if(!messageEncontrado.isPresent()){
-                if(message.getMessagetext() != null){
-                    messageEncontrado.get().setMessagetext(message.getMessagetext());
+                if(message.getMessageText() != null){
+                    messageEncontrado.get().setMessageText(message.getMessageText());
                 }
                 return messageRepository.save(messageEncontrado.get());
             }

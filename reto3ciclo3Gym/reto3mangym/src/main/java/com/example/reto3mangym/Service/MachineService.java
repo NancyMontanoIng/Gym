@@ -25,7 +25,7 @@ public class MachineService {
         if(machine.getId() == null){
             return machineRepository.save(machine);
         } else  {
-            Optional<Machine> machineEncontrado = getMachine(machine.getId());
+            Optional<Machine> machineEncontrado = machineRepository.getMachine(machine.getId());
             if(machineEncontrado.isPresent()){
                 return machineRepository.save(machine);
             } else{
@@ -36,7 +36,7 @@ public class MachineService {
 
     public Machine update(Machine machine) {
         if (machine.getId() != null) {
-            Optional<Machine> machineEncontrado = getMachine(machine.getId());
+            Optional<Machine> machineEncontrado = machineRepository.getMachine(machine.getId());
             if(!machineEncontrado.isPresent()){
                 if(machine.getBrand() != null){
                     machineEncontrado.get().setBrand(machine.getBrand());

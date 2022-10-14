@@ -25,7 +25,7 @@ public class ReservationService {
             return reservationRepository.save(reservation);
 
         } else  {
-            Optional<Reservation> reservationEncontrado = getReservation(reservation.getIdReservation());
+            Optional<Reservation> reservationEncontrado = reservationRepository.getReservation(reservation.getIdReservation());
             if(reservationEncontrado.isPresent()){
                 return reservationRepository.save(reservation);
             } else{
@@ -39,8 +39,8 @@ public class ReservationService {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> reservationEncontrado = reservationRepository.getReservation(reservation.getIdReservation());
             if(!reservationEncontrado.isPresent()){
-                if(reservation.getStarDate() != null){
-                    reservationEncontrado.get().setStarDate(reservation.getStarDate());
+                if(reservation.getStartDate() != null){
+                    reservationEncontrado.get().setStartDate(reservation.getStartDate());
                 }
                 if(reservation.getDevolutionDate() != null){
                     reservationEncontrado.get().setDevolutionDate(reservation.getDevolutionDate());

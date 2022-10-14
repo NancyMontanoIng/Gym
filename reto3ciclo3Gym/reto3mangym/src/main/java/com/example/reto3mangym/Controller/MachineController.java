@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/api/Machine")
 public class MachineController {
@@ -32,6 +32,17 @@ public class MachineController {
     @ResponseStatus(HttpStatus.CREATED)
     public Machine save(@RequestBody Machine machine){
         return machineService.save(machine);
-
     }
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Machine update(@RequestBody Machine machine) {
+        return machineService.save(machine);
+    }
+
+    //@DeleteMapping("/{idMachine}")
+    //@ResponseStatus(HttpStatus.NO_CONTENT)
+
+
+
+
 }
