@@ -1,7 +1,7 @@
 package com.example.reto3mangym.Service;
 
 import com.example.reto3mangym.Model.Reservation;
-import com.example.reto3mangym.Repository.ReservationRepository;
+import Repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

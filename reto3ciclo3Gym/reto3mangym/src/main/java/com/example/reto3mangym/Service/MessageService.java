@@ -1,7 +1,7 @@
 package com.example.reto3mangym.Service;
 
 import com.example.reto3mangym.Model.Message;
-import com.example.reto3mangym.Repository.MessageRepository;
+import Repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

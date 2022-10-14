@@ -1,7 +1,7 @@
 package com.example.reto3mangym.Service;
 
 import com.example.reto3mangym.Model.Category;
-import com.example.reto3mangym.Repository.CategoryRepository;
+import Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
