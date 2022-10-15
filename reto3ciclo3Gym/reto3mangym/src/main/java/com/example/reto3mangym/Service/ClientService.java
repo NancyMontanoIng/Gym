@@ -1,7 +1,7 @@
 package com.example.reto3mangym.Service;
 
 import com.example.reto3mangym.Model.Client;
-import Repository.ClientRepository;
+import com.example.reto3mangym.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
