@@ -1,6 +1,7 @@
 package com.example.reto3mangym.Controller;
 
 
+import com.example.reto3mangym.Model.Machine;
 import com.example.reto3mangym.Model.Score;
 import com.example.reto3mangym.Service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,17 @@ public class ScoreController {
         return scoreService.save(score);
 
     }
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score score) {
+        return scoreService.save(score);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return scoreService.delete(id);
+    }
+
 
 }

@@ -69,14 +69,6 @@ public class Client implements Serializable {
         this.age = age;
     }
 
-   /* public Machine getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
-*/
     public List<Message> getMessages() {
         return messages;
     }

@@ -1,5 +1,6 @@
 package com.example.reto3mangym.Controller;
 
+import com.example.reto3mangym.Model.Machine;
 import com.example.reto3mangym.Model.Message;
 import com.example.reto3mangym.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,16 @@ public class MessageController {
         return messageService.save(message);
 
     }
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message message) {
+        return messageService.save(message);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return messageService.delete(id);
+    }
+
 }

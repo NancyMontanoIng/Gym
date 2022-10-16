@@ -22,8 +22,14 @@ public class ClientService {
     }
 
     public Client save(Client client){
-        if(client.getIdClient() == null){
-            return clientRepository.save(client);
+        if(client.getIdClient() == null) {
+            if (client.getEmail().length() <= 45
+                    && client.getPassword().length() <= 45
+                    && client.getName().length() <= 250) {
+                return clientRepository.save(client);
+            } else {
+                return client;
+            }
         } else  {
             Optional<Client> clientEncontrado = clientRepository.getClient(client.getIdClient());
             if(clientEncontrado.isPresent()){

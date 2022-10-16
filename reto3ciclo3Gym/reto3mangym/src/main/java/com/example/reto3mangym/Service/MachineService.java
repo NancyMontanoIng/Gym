@@ -23,7 +23,14 @@ public class MachineService {
 
     public Machine save(Machine machine){
         if(machine.getId() == null){
-            return machineRepository.save(machine);
+            if (machine.getName().length() <= 45
+                    && machine.getBrand().length() <= 45
+                    && machine.getDescription().length() <= 250) {
+                return machineRepository.save(machine);
+            } else {
+                return machine;
+            }
+
         } else  {
             Optional<Machine> machineEncontrado = machineRepository.getMachine(machine.getId());
             if(machineEncontrado.isPresent()){
@@ -38,11 +45,11 @@ public class MachineService {
         if (machine.getId() != null) {
             Optional<Machine> machineEncontrado = machineRepository.getMachine(machine.getId());
             if(!machineEncontrado.isPresent()){
-                if(machine.getBrand() != null){
-                    machineEncontrado.get().setBrand(machine.getBrand());
-                }
                 if(machine.getName() != null){
                     machineEncontrado.get().setName((machine.getName()));
+                }
+                if(machine.getBrand() != null){
+                    machineEncontrado.get().setBrand(machine.getBrand());
                 }
                 if(machine.getYear() != null){
                     machineEncontrado.get().setYear((machine.getYear()));
@@ -53,7 +60,6 @@ public class MachineService {
                 if(machine.getCategory() != null){
                     machineEncontrado.get().setCategory((machine.getCategory()));
                 }
-                //return machineRepository.save(machineEncontrado.get());
                 machineRepository.save(machineEncontrado.get());
                 return machineEncontrado.get();
             }else{
