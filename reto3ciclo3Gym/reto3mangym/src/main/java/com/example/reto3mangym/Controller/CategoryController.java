@@ -40,7 +40,7 @@ public class CategoryController {
     @PutMapping ("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Category update(@RequestBody Category category) {
-        return categoryService.save(category);
+        return categoryService.update(category);
     }
 
     @DeleteMapping("/{id}")

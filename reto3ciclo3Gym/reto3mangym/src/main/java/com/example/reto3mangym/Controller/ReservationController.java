@@ -1,6 +1,7 @@
 package com.example.reto3mangym.Controller;
 
 import com.example.reto3mangym.Model.Client;
+
 import com.example.reto3mangym.Model.Machine;
 import com.example.reto3mangym.Model.Reservation;
 import com.example.reto3mangym.Repository.CountClient;
@@ -27,18 +28,19 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id){
+    public Optional<Reservation> getReservation(@PathVariable("id") int id) {
         return reservationService.getReservation(id);
     }
 
     //ruta de peticion POST    /api/Reservation/save
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation reservation){
+    public Reservation save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
 
     }
-    @PutMapping ("/update")
+
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
         return reservationService.update(reservation);
@@ -46,27 +48,26 @@ public class ReservationController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){
+    public boolean delete(@PathVariable("id") int id) {
         return reservationService.delete(id);
     }
 
 
     ////////////////////CODIGO PARA RETO5///////////////
     @GetMapping("/report-clients")
-    public List<CountClient> getReservationsReportClient(){
+    public List<CountClient> getReservationsReportClient() {
         return reservationService.getTopClients();
     }
 
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo) {
+        return reservationService.informePeriodoTiempoReservas(dateOne, dateTwo);
     }
 
     @GetMapping("/report-status")
-    public StatusService getReservationsStatusReport(){
+    public StatusService getReservationsStatusReport() {
         return reservationService.getReservationStatusReport();
     }
-
 }
 
 

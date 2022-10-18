@@ -36,7 +36,7 @@ public class MachineController {
     @PutMapping ("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Machine update(@RequestBody Machine machine) {
-        return machineService.save(machine);
+        return machineService.update(machine);
     }
 
     @DeleteMapping("/{id}")

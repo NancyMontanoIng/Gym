@@ -22,12 +22,7 @@ public class MessageService {
 
     public Message save(Message message){
         if(message.getIdMessage() == null){
-            if(message.getMessageText().length()<=250){
-                return messageRepository.save(message);
-            } else {
-                return message;
-            }
-
+            return messageRepository.save(message);
         } else  {
             Optional<Message> messageEncontrado = messageRepository.getMessage(message.getIdMessage());
             if(messageEncontrado.isPresent()){

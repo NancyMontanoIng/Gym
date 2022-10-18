@@ -41,6 +41,7 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public Client update(@RequestBody Client client) {
         return clientService.update(client);
+
     }
 
     @DeleteMapping("/{id}")
