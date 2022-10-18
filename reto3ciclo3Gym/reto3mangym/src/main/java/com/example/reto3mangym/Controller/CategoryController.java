@@ -2,6 +2,7 @@ package com.example.reto3mangym.Controller;
 
 
 import com.example.reto3mangym.Model.Category;
+import com.example.reto3mangym.Model.Machine;
 import com.example.reto3mangym.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class CategoryController {
     public List<Category> getAll() {
         return categoryService.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Category> getCategory(@PathVariable("id") int id){
         return categoryService.getCategory(id);
@@ -33,7 +35,18 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public Category save(@RequestBody Category category){
         return categoryService.save(category);
+    }
 
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category update(@RequestBody Category category) {
+        return categoryService.save(category);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return categoryService.delete(id);
     }
 
 

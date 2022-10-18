@@ -16,13 +16,13 @@ public class Message implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "machineId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Machine machine;
 
 
     @ManyToOne
     @JoinColumn(name = "idClient")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {

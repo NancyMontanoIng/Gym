@@ -23,7 +23,12 @@ public class CategoryService {
 
     public Category save(Category category){
         if(category.getId() == null){
-            return categoryRepository.save(category);
+            if(category.getName().length()<=45
+                    &&category.getDescription().length()<=250){
+                return categoryRepository.save(category);
+            }else {
+                return category;
+            }
         } else  {
             Optional <Category> categoryEncontrado = categoryRepository.getCategory(category.getId());
             if(categoryEncontrado.isPresent()){
@@ -38,11 +43,11 @@ public class CategoryService {
         if (category.getId() != null) {
             Optional<Category> categoryEncontrado = categoryRepository.getCategory(category.getId());
             if(!categoryEncontrado.isPresent()){
-                if(category.getDescription() != null){
-                    categoryEncontrado.get().setDescription(category.getDescription());
-                }
                 if(category.getName() != null){
                     categoryEncontrado.get().setName((category.getName()));
+                }
+                if(category.getDescription() != null){
+                    categoryEncontrado.get().setDescription(category.getDescription());
                 }
                 return categoryRepository.save(categoryEncontrado.get());
             }

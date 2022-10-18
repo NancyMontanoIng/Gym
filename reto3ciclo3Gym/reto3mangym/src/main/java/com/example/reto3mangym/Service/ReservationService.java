@@ -1,10 +1,15 @@
 package com.example.reto3mangym.Service;
 
 import com.example.reto3mangym.Model.Reservation;
+import com.example.reto3mangym.Repository.CountClient;
 import com.example.reto3mangym.Repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,4 +67,32 @@ public class ReservationService {
         return resultado;
         }
 
+    ///////////////////////////////codigo reto 5///////////////////
+    public StatusService getReservationStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationByStatus("cancelled");
+        return new StatusService(completed.size(),cancelled.size());
+    }
+
+    public List<Reservation> informePeriodoTiempoReservas(String dataA, String dataB){
+        SimpleDateFormat parser =new SimpleDateFormat("yyyy-MM-dd");
+        Date a = new Date();
+        Date b = new Date();
+
+        try {
+            a = parser.parse(dataA);
+            b = parser.parse(dataB);
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        if(a.before(b)){
+            return reservationRepository.informePeriodoTiempoReservas(a, b);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public List<CountClient> getTopClients(){
+        return reservationRepository.getTopClient();
+    }
 }

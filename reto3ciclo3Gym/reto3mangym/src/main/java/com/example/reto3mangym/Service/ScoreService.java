@@ -22,7 +22,12 @@ public class ScoreService {
 
     public Score save(Score score){
         if(score.getIdScore() == null){
-            return scoreRepository.save(score);
+            if(score.getMessageText().length()<=250){
+                return scoreRepository.save(score);
+            } else {
+                return score;
+            }
+
         } else  {
             Optional<Score> scoreEncontrado = scoreRepository.getScore(score.getIdScore());
             if(scoreEncontrado.isPresent()){

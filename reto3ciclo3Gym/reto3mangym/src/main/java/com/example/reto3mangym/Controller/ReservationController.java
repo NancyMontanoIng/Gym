@@ -1,7 +1,11 @@
 package com.example.reto3mangym.Controller;
 
+import com.example.reto3mangym.Model.Client;
+import com.example.reto3mangym.Model.Machine;
 import com.example.reto3mangym.Model.Reservation;
+import com.example.reto3mangym.Repository.CountClient;
 import com.example.reto3mangym.Service.ReservationService;
+import com.example.reto3mangym.Service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,4 +38,36 @@ public class ReservationController {
         return reservationService.save(reservation);
 
     }
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation update(@RequestBody Reservation reservation) {
+        return reservationService.update(reservation);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return reservationService.delete(id);
+    }
+
+
+    ////////////////////CODIGO PARA RETO5///////////////
+    @GetMapping("/report-clients")
+    public List<CountClient> getReservationsReportClient(){
+        return reservationService.getTopClients();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    }
+
+    @GetMapping("/report-status")
+    public StatusService getReservationsStatusReport(){
+        return reservationService.getReservationStatusReport();
+    }
+
 }
+
+
+

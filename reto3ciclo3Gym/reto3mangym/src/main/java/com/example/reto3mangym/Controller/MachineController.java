@@ -39,9 +39,11 @@ public class MachineController {
         return machineService.save(machine);
     }
 
-    //@DeleteMapping("/{idMachine}")
-    //@ResponseStatus(HttpStatus.NO_CONTENT)
-
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return machineService.delete(id);
+    }
 
 
 
